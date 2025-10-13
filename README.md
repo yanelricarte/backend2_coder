@@ -5,7 +5,7 @@ Implementa un CRUD completo sobre el recurso `users`.
 
 ---
 
-## 🧩 Tecnologías
+## Tecnologías
 
 - Node.js (v18+)
 - Express.js
@@ -22,25 +22,16 @@ Implementa un CRUD completo sobre el recurso `users`.
 npm init -y
 npm install express mongoose dotenv cors helmet morgan
 npm install -D nodemon
+```
+
 2️⃣ Archivo .env
 env
 Copiar código
 MONGO_URI="mongodb+srv://USUARIO:PASSWORD@cluster0.xxxxxx.mongodb.net/backend2?retryWrites=true&w=majority"
 PORT=3000
+
 ⚠️ Agregar .env a .gitignore.
 
-▶️ Ejecución del servidor
-bash
-Copiar código
-npm run dev
-Salida esperada:
-
-arduino
-Copiar código
-✅ MongoDB Atlas conectado
-🚀 API escuchando en http://localhost:3000
-📚 Endpoints principales
-Base URL: http://localhost:3000
 
 Método	Ruta	Descripción
 GET	/health	Verificar estado del servidor
