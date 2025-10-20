@@ -1,9 +1,11 @@
+/**
+ * Middleware de manejo de errores (centralizado)
+ * captura erroreres y unifica respuestas en JSON
+ */
+
 
 export default (err, _req, res, _next) => {
-  console.error(err);
-  const code = 
-  err.name === 'ValidationError' ? 422 :
-  err.code === 11000 ? 409 : 500;
-
-  res.status(code).json({ message: err.message || 'Error interno' });
-  }
+  console.error('x', err);
+  const status = err.status || 500;
+  res.status(status).json({ error: err.message || 'Error interno' });
+};

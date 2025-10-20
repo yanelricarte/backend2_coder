@@ -1,29 +1,36 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
 
-const userRoutes = require('./routes/users.routes');
-const errorMW = require('./middlewares/error').default;
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+
+import { createSessionMW } from './config/session.js'; // fábrica → middleware real
+import sessionsRoutes from './routes/sessions.routes.js';
+import errorMW from './middlewares/error.js';
 
 const app = express();
 
-// Middlewares
-app.use(helmet());
-app.use(cors());
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+/* ===== Orden recomendado de middlewares ===== */
 
-// Routes
-app.use('/api/users', userRoutes);
+app.use(helmet());                                 // cabeceras de seguridad
+app.use(cors({ origin: true, credentials: true })); // CORS con credenciales (cookies)
+app.use(morgan('dev'));                            // logs HTTP
+app.use(express.json());                           // parser JSON
+app.use(express.urlencoded({ extended: true }));   // parser urlencoded
+app.use(cookieParser());                           // lee cookies (incluye connect.sid)
+app.use(createSessionMW());                        // crea/recupera sesiones -> req.session
 
-//404
+/* Healthcheck simple */
+app.get('/health', (_req, res) => res.json({ ok: true }));
+
+/* Rutas de la clase de hoy */
+app.use('/api/sessions', sessionsRoutes);          // /register y /login
+
+/* 404 explícito */
 app.use((_req, res) => res.status(404).json({ message: 'Ruta no encontrada' }));
 
-
-// Errores
-
+/* Handler de errores (último SIEMPRE) */
 app.use(errorMW);
 
-module.exports = app;
+export default app;
