@@ -1,4 +1,5 @@
-# 🚀 API REST – Clase 1: Express + MongoDB
+#  Curso Backend 2 
+## 🚀 API REST – Clase 1: Express + MongoDB
 
 > **Objetivo de la clase**: arrancar un servidor Express, conectarlo a MongoDB con Mongoose y construir un CRUD mínimo de `users`. También practicamos requests con Postman.
 
@@ -73,7 +74,7 @@ MONGODB_URI="mongodb://127.0.0.1:27017/class-zero"  # o tu string de Atlas
 
 ---
 
-## 🧩 Conexión a la base de datos (`src/config/db.js`)
+## Conexión a la base de datos (`src/config/db.js`)
 
 ```js
 import mongoose from "mongoose";
@@ -92,7 +93,7 @@ export async function connectMongo(uri) {
 
 ---
 
-## 🧱 Modelo `User` (`src/models/user.model.js`)
+## Modelo `User` (`src/models/user.model.js`)
 
 ```js
 import mongoose from "mongoose";
@@ -111,7 +112,7 @@ export const UserModel = mongoose.model("User", userSchema);
 
 ---
 
-## 🧭 Router de usuarios (`src/routes/users.router.js`)
+## Router de usuarios (`src/routes/users.router.js`)
 
 ```js
 import { Router } from "express";
@@ -169,7 +170,7 @@ usersRouter.delete("/:id", async (req, res, next) => {
 
 ---
 
-## 🧯 Middleware de errores (`src/middlewares/error.handler.js`)
+## Middleware de errores (`src/middlewares/error.handler.js`)
 
 ```js
 export function errorHandler(err, req, res, next) {
@@ -183,7 +184,7 @@ export function errorHandler(err, req, res, next) {
 
 ---
 
-## 🏁 App principal (`src/app.js`)
+## App principal (`src/app.js`)
 
 ```js
 import "dotenv/config";
@@ -258,7 +259,7 @@ curl -X DELETE http://localhost:3000/api/users/<_id>
 
 ---
 
-## 🧪 Actividad en clase (Hands-on)
+## Actividad en clase (Hands-on)
 
 1. Conectar el servidor a Mongo (local o Atlas).
 2. Implementar CRUD completo para `User` con validaciones.
@@ -267,7 +268,7 @@ curl -X DELETE http://localhost:3000/api/users/<_id>
 ---
 
 
-## 🧩 Conceptos clave (resumen)
+## Conceptos clave (resumen)
 
 * **API REST**: contrato entre frontend y backend (endpoints, payloads, status).
 * **Express**: router y middlewares en orden de ejecución.
@@ -276,7 +277,7 @@ curl -X DELETE http://localhost:3000/api/users/<_id>
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 * `ECONNREFUSED mongodb`: revisa `MONGODB_URI` y si el cluster/local está arriba.
 * `EADDRINUSE :3000`: cambia `PORT` o cierra procesos previos.
@@ -285,7 +286,7 @@ curl -X DELETE http://localhost:3000/api/users/<_id>
 
 ---
 
-## 📖 Recursos sugeridos
+## Recursos sugeridos
 
 * Documentación Express (Routing, Middlewares)
 * Documentación Mongoose (Schemas, Models)

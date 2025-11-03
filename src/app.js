@@ -3,14 +3,17 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import passport from './config/passport.js';
+import { engine } from 'express-handlebars';
 
-import { createSessionMW } from './config/session.js';     //usamos SOLO esta fábrica
-import sessionsRoutes from './routes/sessions.routes.js';  
-import protectRouter from './routes/protected.routes.js';    
-import usersRoutes from './routes/users.routes.js';    
+import { initPassport } from './config/passport.js';
+
+import sessionsRoutes from './routes/sessions.routes.js';
+import protectRouter from './routes/protected.routes.js';
+import usersRoutes from './routes/users.routes.js';
+//import viewsRoutes from './routes/views.routes.js';
 
 
+import { attachUserFromCookie } from './middlewares/auth-cookie.js';
 import errorMW from './middlewares/error.js';
 
 const app = express();
@@ -21,23 +24,30 @@ app.use(cors({ origin: true, credentials: true })); // si sólo usás mismo orig
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
-app.use(createSessionMW()); // crea/recupera req.session (connect-mongo, etc.)
+/* Cookies firmadas; necesarias para leer las cookie desde  req.signedCookies */
+app.use(cookieParser(process.env.COOKIE_SECRET));
+
+/* ESTÁTICOS (CSS) */
+app.use(express.static('public'));
+
+/* VISTAS (SSR) */
+//app.engine('handlebars', engine());
+//app.set('view engine', 'handlebars');
+//app.set('views', './src/views');
 
 
-// 👉 habilitar Passport (en este orden)
-app.use(passport.initialize());
-app.use(passport.session());      // 👉 enlaza passport con express-session
+// Passport stateless (NO passport.sesion())
+
+initPassport(app)
+app.use(attachUserFromCookie);
 
 
-/* Healthcheck */
+/* SALUD + RUTAS */
 app.get('/health', (_req, res) => res.json({ ok: true }));
-
-/* Rutas */
 app.use('/api/sessions', sessionsRoutes);  // /register, /login, /me, /logout
 app.use('/private', protectRouter);
-app.use('/api/users',    usersRoutes);     
+//app.use('//', viewsRoutes);
 
 
 /* 404 explícito */
