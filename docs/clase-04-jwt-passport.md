@@ -17,15 +17,8 @@
 * Reforzar **stateful vs stateless**, **XSS/CSRF**, **401 vs 403**, y **roles**.
 * Dejar preparada la estructura para incorporar **Handlebars** (próxima clase).
 
----
 
-## Requisitos
-
-* Node.js 18+
-* MongoDB Atlas (o local)
-* Postman
-
-Instalar dependencias:
+## Instalar dependencias:
 
 ```bash
 npm i
@@ -48,11 +41,6 @@ COOKIE_SECRET=otra_clave_para_firmar
 COOKIE_NAME=currentUser
 ```
 
-# Si tenés front en otro origen:
-
-# CORS_ORIGIN=[http://localhost:5173](http://localhost:5173)
-
----
 
 ## Estructura del proyecto
 

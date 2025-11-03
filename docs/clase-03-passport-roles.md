@@ -3,7 +3,7 @@
  CLASE 3 — AUTENTICACIÓN CON PASSPORT (LOCAL) + ROLES
 ========================================================= -->
 
-# 🧩 Curso Backend 2 — Unidad 1  
+#  Curso Backend 2 — Unidad 1  
 ## Clase 3 · Autenticación con Passport (Local) + Autorización por Roles
 
 **Proyecto base:** `backend2_coder`  
@@ -28,13 +28,13 @@
 
 ## 1) Sessiones y cookies
 
-### 🔎 Conceptos
+### Conceptos
 - **Sesión**: el server guarda estado en un *store*; el cliente guarda una cookie `connect.sid` con el **ID**.  
 - **/api/sessions/me**: devuelve lo que hay en la **sesión** (no consulta DB).  
 - **/api/users/me**: consulta la **DB** usando el **id** de la sesión (fuente de verdad).  
 - **/api/users**: requiere **sesión** + **rol admin** (401 si no hay sesión, 403 si el rol no alcanza).
 
-### 🧪 Demo
+### Demo
 - **Login** → aparece `connect.sid` (Postman: pestaña *Cookies*; Navegador: DevTools → Application → Cookies).  
 - **/sessions/me** → 200 con `{ user:{...} }` (sale del store de sesión).  
 - **/users/me** → 200 con documento real (sale de DB).  
@@ -51,7 +51,7 @@
 Sacar la lógica de verificación de credenciales fuera de la ruta `/login` y delegarla en **Passport** mediante la **LocalStrategy**.  
 **Ganancia:** menos código “a mano”, estrategia estandarizada, fácil de extender (GitHub/Google/JWT), mismo contrato de sesión.
 
-### 🧱 Piezas que se tocan
+### Piezas que se tocan
 - `config/passport.js`: **LocalStrategy** + `serializeUser` / `deserializeUser` (con logs para la clase).  
 - `app.js`: `passport.initialize()` + `passport.session()` **después** de `createSessionMW()`.  
 - `routes/sessions.routes.js`: `/login` ahora llama a `passport.authenticate('local')`, **regenera** la sesión, hace `req.login(user)` y **deja** `req.session.user = { id, email, name, role }`.
@@ -65,8 +65,7 @@ Durante un **login** correcto, en la consola se ven (orden aproximado):
 [LOGIN] req.user listo … // Passport fija req.user
 [LOGIN] session.user seteado { id, email, name, role } // tu contrato
 
-markdown
-Copiar código
+
 
 > **Punto clave:** el resto del sistema (rutas protegidas y roles) **no cambia**: todo sigue leyendo `req.session.user`.
 

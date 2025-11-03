@@ -21,7 +21,7 @@ backend2-clase2/
 
 ---
 
-## 🧠 Conceptos clave (Clase 2)
+## Conceptos clave (Clase 2)
 
 * **Sesiones HTTP**: se guarda un **ID de sesión** en una cookie firmada (`connect.sid`). Los **datos reales** (`req.session.user`) viven en el **store del servidor** (Mongo/Redis), **no** en la cookie.
 * **Store persistente (connect-mongo)**: mantiene las sesiones en MongoDB y limpia las expiradas por TTL.
@@ -35,7 +35,7 @@ backend2-clase2/
 
 ---
 
-## 🛣️ Endpoints (Clase 2)
+## Endpoints (Clase 2)
 
 | Método | Ruta                     | Descripción                               |
 | -----: | ------------------------ | ----------------------------------------- |
@@ -47,7 +47,7 @@ backend2-clase2/
 
 ---
 
-## ✅ Cómo probar en Postman
+## Cómo probar en Postman
 
 ### 0) Variable `baseUrl`
 
@@ -130,7 +130,7 @@ En **Cookies** debe figurar la cookie `connect.sid` activa.
 
 ---
 
-## 🧪 cURL (opcional)
+## cURL (opcional)
 
 ```bash
 # Health
@@ -159,7 +159,7 @@ curl -i -b cookies.txt -c cookies.txt -X POST http://localhost:3000/api/sessions
 
 ---
 
-## 📦 Diferencias vs Clase 1
+## Diferencias vs Clase 1
 
 * Agregamos **autenticación por sesiones** (cookie firmada + store en Mongo).
 * Endpoints nuevos: **`POST /api/sessions/register`** y **`POST /api/sessions/login`**.
