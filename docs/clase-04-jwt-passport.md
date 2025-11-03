@@ -1,4 +1,5 @@
-# Clase 4 — Integración avanzada con JWT y Passport
+#  Curso Backend 2 
+## Clase 4 — Integración avanzada con JWT y Passport
 
 > **Meta:** migramos de autenticación con **sesiones (stateful)** a **JWT (stateless)** usando **cookies HttpOnly firmadas**, estrategias **Passport Local + JwtStrategy**, y **Handlebars** para visualizar el flujo (login → current → logout).
 > Este README resume **qué implementamos**, **cómo está organizado el proyecto** y **cómo probar todo**.

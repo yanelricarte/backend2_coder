@@ -1,4 +1,5 @@
-# 🚀 API REST – Clase 1: Express + MongoDB
+#  Curso Backend 2 
+## 🚀 API REST – Clase 1: Express + MongoDB
 
 > **Objetivo de la clase**: arrancar un servidor Express, conectarlo a MongoDB con Mongoose y construir un CRUD mínimo de `users`. También practicamos requests con Postman.
 

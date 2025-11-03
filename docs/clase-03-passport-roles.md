@@ -3,7 +3,7 @@
  CLASE 3 — AUTENTICACIÓN CON PASSPORT (LOCAL) + ROLES
 ========================================================= -->
 
-#  Curso Backend 2 — Unidad 1  
+#  Curso Backend 2 
 ## Clase 3 · Autenticación con Passport (Local) + Autorización por Roles
 
 **Proyecto base:** `backend2_coder`  
