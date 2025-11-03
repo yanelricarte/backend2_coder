@@ -5,10 +5,10 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 import app from './src/app.js';
 
-const { MONGO_URL, PORT = 3000 } = process.env;
+const { MONGO_URL, MONGO_DB = 'integrative_practice', PORT = 3000 } = process.env;
 
-await mongoose.connect(MONGO_URL);
-console.log('Mongo conectado');
+await mongoose.connect(MONGO_URL, { dbName: MONGO_DB });
+console.log(`Mongo conectado (${MONGO_DB})`);
 
 const server = app.listen(PORT, () => {
   console.log(`API escuchando en http://localhost:${PORT}`);
