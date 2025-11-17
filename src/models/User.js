@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const ROUNDS = Number(process.env.BCRYPT_ROUNDS ?? 10);
 

@@ -1,0 +1,46 @@
+<div class="card">
+  <h2>Perfil</h2>
+
+  <p><strong>Email:</strong> {{user.email}}</p>
+  <p><strong>Rol:</strong> {{user.role}}</p>
+
+  <hr/>
+
+  <h3>Probar endpoints (API) desde la vista</h3>
+  <p>Estas pruebas usan navegación normal (links). El navegador envía la cookie HttpOnly automáticamente (mismo origen).</p>
+
+  <div class="grid">
+    <div>
+      <h4>Endpoint público</h4>
+      <p>GET <code>/api/pets/Milo</code></p>
+      <a class="btn" href="/demo/pets/Milo">Ver público</a>
+    </div>
+
+    <div>
+      <h4>Endpoint autenticado</h4>
+      <p>GET <code>/private/ping</code> (requiere cookie JWT)</p>
+      <a class="btn" href="/demo/private">Ver autenticado</a>
+    </div>
+
+    <div>
+      <h4>Endpoint solo ADMIN</h4>
+      <p>GET <code>/private/admin-ping</code> (403 si el rol no alcanza)</p>
+      <a class="btn" href="/demo/admin">Ver admin</a>
+    </div>
+  </div>
+
+  <hr/>
+
+  <form action="/api/sessions/logout-web" method="post">
+    <button class="btn-outline" type="submit">Salir</button>
+  </form>
+</div>
+
+<style>
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:12px 0}
+  .btn{display:inline-block;background:#b23a57;color:#fff;text-decoration:none;
+       padding:10px 14px;border-radius:10px}
+  .btn-outline{background:transparent;border:1px solid #b23a57;color:#b23a57;
+               padding:10px 14px;border-radius:10px}
+  code{background:#f1f3f5;padding:2px 6px;border-radius:6px}
+</style>

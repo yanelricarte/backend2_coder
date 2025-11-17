@@ -1,15 +1,22 @@
-import { Router } from 'express';
-const router = Router();
+import Router from './router.js';
+import { POL, handlePolicies } from '../middlewares/policies.js';
 
-function isAuthenticated(req, res, next) {
-  if (req.session?.user) return next();
-  return res.status(401).json({ error: 'No autenticado' });
+
+export default class ProtectedRouter extends Router {
+  init() {
+    // Ruta privada para cualquier usuario autenticado.
+    // - Si no hay credencial → 401 "Token requerido"
+    this.get('/ping', [handlePolicies([POL.AUTHENTICATED])], (req, res) => {
+      return res.sendSuccess({
+        message: 'pong (private)',
+        user: { id: req.user.id, email: req.user.email, role: req.user.role }
+      });
+    });
+
+    // Ruta exclusiva ADMIN.
+    // - Si hay credencial pero el rol no alcanza → 403 "Acceso denegado"
+    this.get('/admin-ping', [handlePolicies([POL.ADMIN])], (_req, res) => {
+      return res.sendSuccess({ message: 'pong (admin)' });
+    });
+  }
 }
-
-/* PING PROTEGIDO: confirma que la barrera funciona sin exponer datos */
-router.get('/ping', isAuthenticated, (_req, res) => {
-  res.json({ ok: true, msg: 'pong (protegido)' });
-});
-
-export default router;
-

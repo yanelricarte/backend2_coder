@@ -4,6 +4,7 @@
 import 'dotenv/config';
 import mongoose from 'mongoose';
 import app from './src/app.js';
+import { config } from './src/config/config.js';
 
 const { MONGO_URL, MONGO_DB = 'integrative_practice', PORT = 3000 } = process.env;
 

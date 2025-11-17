@@ -1,0 +1,16 @@
+<div class="card">
+  <h2>Panel ADMIN</h2>
+  {{#if ok}}
+    <p>{{payload.message}}</p>
+  {{else}}
+    <p>Error al consultar /private/admin-ping</p>
+  {{/if}}
+
+  <h3>Tu sesión</h3>
+  <p><strong>Email:</strong> {{user.email}}</p>
+  <p><strong>Rol:</strong> {{user.role}}</p>
+
+  <div style="margin-top:16px;">
+    <a class="btn" href="/current">Volver al perfil</a>
+  </div>
+</div>

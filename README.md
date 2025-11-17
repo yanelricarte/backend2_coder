@@ -12,6 +12,7 @@ El **README principal** funciona como **índice**; cada clase tiene su propio do
 - [Clase 2 — Sesiones y Cookies (express-session + connect-mongo)](docs/clase-02-sesiones-cookies.md)
 - [Clase 3 — Passport Local y Autorización por roles](docs/clase-03-passport-roles.md)
 - [Clase 4 — JWT y Passport](docs/clase-04-jwt-passport.md)
+- [Clase 5 — Ruteo Avanzado](docs/clase-5-ruteo-avanzado.md)
 
 
 ---

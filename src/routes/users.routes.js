@@ -1,4 +1,3 @@
-// src/routes/users.routes.js
 import { Router } from 'express';
 import User from '../models/User.js';
 
@@ -37,10 +36,6 @@ router.get('/me', isAuthenticated, async (req, res, next) => {
 });
 
 /* ---------- CRUD (lista/detalle/alta/edición/baja) ---------- */
-/* Reglas sugeridas para demo Clase 3:
-   - GET lista y DELETE/POST/PUT/PATCH → SOLO ADMIN
-   - GET detalle → autenticado (o admin, si preferís)
-*/
 
 // GET lista (solo admin)
 router.get('/', isAuthenticated, authorize('admin'), async (_req, res, next) => {

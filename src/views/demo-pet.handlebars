@@ -1,0 +1,12 @@
+<div class="card">
+  <h2>{{title}}</h2>
+
+  <p><strong>Nombre:</strong> {{pet.name}}</p>
+  <p><strong>Especie:</strong> {{pet.specie}}</p>
+  <p><strong>Adoptado:</strong> {{#if pet.adopted}}Sí{{else}}No{{/if}}</p>
+
+  <p style="margin-top:16px">
+    <a class="btn" href="/demo/pets/Milo">Ver Milo</a>
+    <a class="btn" href="/current">Volver al perfil</a>
+  </p>
+</div>
